@@ -15,17 +15,17 @@ class HappeningsController < ApplicationController
     end_date = Date.parse(params[:end_date])
 
     if Happening.create(subject: subject, start_date: start_date, end_date: end_date)
-      render json: 'success', status: 201
+      render json: {status: 201, message: 'Happening created.'}, status: 201
     else
-      render json: 'failure', status: 500
+      render json: {status: 500, message: 'Failed to create happening.'}, status: 500
     end
   end
 
   def destroy
     if Happening.find(params[:id]).destroy
-      render json: 'success', status: 201
+      render json: {status: 201, message: 'Happening deleted.'}, status: 201
     else
-      render json: 'failure', status: 500
+      render json: {status: 500, message: 'Failed to delete happening.'}, status: 500
     end
   end
 
