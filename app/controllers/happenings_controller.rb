@@ -10,9 +10,17 @@ class HappeningsController < ApplicationController
   end
 
   def create
-    subject = params[:subject]
-    start_date = Date.parse(params[:start_date])
-    end_date = Date.parse(params[:end_date])
+    if params[:subject]
+      subject = params[:subject]
+    end
+
+    if params[:start_date]
+      start_date = Date.parse(params[:start_date])
+    end
+
+    if params[:end_date]
+      end_date = Date.parse(params[:end_date])
+    end
 
     if Happening.create(subject: subject, start_date: start_date, end_date: end_date)
       render json: {status: 201, message: 'Happening created.'}, status: 201
