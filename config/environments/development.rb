@@ -1,4 +1,4 @@
-VisitScheduler::Application.configure do
+HappeningsService::Application.configure do
   $stdout.sync = true
 
   # Settings specified here will take precedence over those in config/application.rb.

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-VisitScheduler::Application.load_tasks
+HappeningsService::Application.load_tasks

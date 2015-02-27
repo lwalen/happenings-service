@@ -1,2 +1,2 @@
-module VisitsHelper
+module HappeningsHelper
 end
