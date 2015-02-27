@@ -1,1 +1,1 @@
-json.array! @happenings, :id, :person, :start_on, :end_on
+json.array! @happenings, :id, :subject, :start_date, :end_date

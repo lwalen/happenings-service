@@ -10,11 +10,11 @@ class HappeningsController < ApplicationController
   end
 
   def create
-    person = params[:person]
-    start_on = Date.parse(params[:start_on])
-    end_on = Date.parse(params[:end_on])
+    subject = params[:subject]
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
 
-    if Happening.create(person: person, start_on: start_on, end_on: end_on)
+    if Happening.create(subject: subject, start_date: start_date, end_date: end_date)
       render json: 'success', status: 201
     else
       render json: 'failure', status: 500

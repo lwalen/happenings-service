@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227050237) do
+ActiveRecord::Schema.define(version: 20150227052242) do
 
   create_table "happenings", force: true do |t|
-    t.string   "person"
-    t.date     "start_on"
-    t.date     "end_on"
+    t.string   "subject"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
