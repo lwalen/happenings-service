@@ -1,16 +1,12 @@
-class VisitsController < ApplicationController
+class HappeningsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
   before_filter :get_access_code
+  before_filter :check_access_code
 
   def index
-    if params[:access_code] != @access_code
-      render json: 'not allowed', status: 401
-      return
-    end
-
-    @visits = Visit.all
+    @happenings = Happening.all
   end
 
   def create
@@ -18,12 +14,7 @@ class VisitsController < ApplicationController
     start_on = Date.parse(params[:start_on])
     end_on = Date.parse(params[:end_on])
 
-    if params[:access_code] != @access_code
-      render json: 'not allowed', status: 401
-      return
-    end
-
-    if Visit.create(person: person, start_on: start_on, end_on: end_on)
+    if Happening.create(person: person, start_on: start_on, end_on: end_on)
       render json: 'success', status: 201
     else
       render json: 'failure', status: 500
@@ -31,12 +22,7 @@ class VisitsController < ApplicationController
   end
 
   def destroy
-    if params[:access_code] != @access_code
-      render json: 'not allowed', status: 401
-      return
-    end
-
-    if Visit.find(params[:id]).destroy
+    if Happening.find(params[:id]).destroy
       render json: 'success', status: 201
     else
       render json: 'failure', status: 500
@@ -50,6 +36,16 @@ class VisitsController < ApplicationController
 
     unless @access_code
       render json: {status: 500, message: 'Access code not set.'}, status: 500
+    end
+  end
+
+  def check_access_code
+    if params[:access_code] != @access_code
+      render json: {
+        status: 401, 
+        message: 'Invalid access code. Access forbidden.'
+      }, status: 401
+      return
     end
   end
 

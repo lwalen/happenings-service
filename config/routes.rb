@@ -1,5 +1,5 @@
 VisitScheduler::Application.routes.draw do
-  get "visits", to: 'visits#index'
-  match "visits", to: 'visits#create', via: [:post, :options]
-  match "visits/:id", to: 'visits#destroy', via: [:delete, :options]
+  get "happenings", to: 'happenings#index'
+  match "happenings", to: 'happenings#create', via: [:post, :options]
+  match "happenings/:id", to: 'happenings#destroy', via: [:delete, :options]
 end
