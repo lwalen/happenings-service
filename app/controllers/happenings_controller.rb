@@ -50,9 +50,11 @@ class HappeningsController < ApplicationController
   def check_access_code
     if params[:access_code] != @access_code
       render json: {
-        status: 401, 
+        status: 401,
         message: 'Invalid access code. Access forbidden.'
       }, status: 401
+
+      cors_set_access_control_headers
       return
     end
   end
